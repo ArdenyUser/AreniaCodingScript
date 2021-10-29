@@ -1,4 +1,6 @@
 use std::fs;
+use std::File;
+use std::io::BufReader;
 
 fn main() {
     let data = fs::read_to_string("config.set").expect("Unable to read file!");
@@ -22,4 +24,3 @@ fn main() {
         }
     }
 }
-
