@@ -4,4 +4,4 @@ version = "0.1.9"
 edition = "2021"
 
 [dependencies]
-input = "0.7"
+text_io = "0.1.9"
