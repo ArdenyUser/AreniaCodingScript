@@ -1,0 +1,6 @@
+[package]
+name = "arenia"
+version = "0.1.9"
+edition = "2021"
+
+[dependencies]
