@@ -1,27 +1,32 @@
 use std::fs;
-use std::File;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
+use std::string;
+use std::prelude::rust_2021::String as String;
 
-fn main() {
-    let data = fs::read_to_string("config.set").expect("Unable to read file!");
+
+pub fn main() {
+    let data = fs::read_to_string("config.set");
     let fsread = data;
-    let filedat = fs::read_to_string(fsread).expect("Unable to read file!");
-    let mut stringset;
-    let mut cmda;
-    let mut auga;
-    let mut augb;
-    let mut augset;
+    let mut stringset:String;
+    let mut auga:String;
+    let mut augb:String;
     let mut setting;
+	let mut stringsetaug:String;
     setting = "B";
-    for line in filedat.lines() {
+	let mut f = BufReader::new(File::open("main.fs").expect("open failed"));
+    for line in f.lines() {
         for c in line.expect("lines failed").chars() {
-            if c != " " && setting != "A" {
-                stringset = [stringset, c].expect(".CONCAT of file failed...");
-                cmda = stringset;
+            // main system
+			stringset.push(c);
+            if c != ' ' {
+				
             } else {
                 setting = "A";
-                if c != ";" && setting == "A" {
-                    stringset = " ";
-                    augset = [stringset, c].expect(".CONCAT of file failed...");
+                if c != ';' {
+					if setting != "A" {
+						stringsetaug.push(c);
+					}
                 }
             }
         }
