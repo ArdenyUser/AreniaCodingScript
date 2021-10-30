@@ -5,28 +5,44 @@ use std::prelude::rust_2021::String as String;
 
 
 pub fn main() {
+    let data = fs::read_to_string("config.set");
+    let fsread = data;
     let mut stringset:String;
-    let mut stringset = String::new();
+	let mut stringset = String::new();
     let mut auga:String;
     let mut augb:String;
     let mut setting;
-    let mut stringsetaug:String;
-    let mut stringsetaug = String::new();
+	let mut stringsetaug:String;
+	let mut stringsetaug = String::new();
     setting = "B";
-    let f = BufReader::new(File::open("main.fs").expect("open failed"));
+	let f = BufReader::new(File::open("main.fs").expect("open failed"));
     for line in f.lines() {
+		setting = "B";
         for c in line.expect("lines failed").chars() {
-	    stringset.push(c);
-            if c != ' ' {
-				
-            } else {
-                setting = "A";
-                if c != ';' {
-			if setting != "A" {
-				stringsetaug.push(c);
-		        }
-                }
+            // main system
+			stringset.push(c);
+			if setting == "B" {
+				stringset.push(c);
+				if c == ' ' {
+					setting = "A";
+				}
             }
+            if c != ';' {
+				if setting != "A" {
+					stringsetaug.push(c);
+					}
+                }
+            } 
+			if c == ';' {
+				if setting != "A" {
+					//processing unit
+					if stringset == "println" {
+						println!("{}", stringsetaug);
+					}
+				}
+                }
+			}
+			println!("{}", stringset);
+			println!("{}", stringsetaug);
         }
-    }
-}
+
