@@ -5,8 +5,6 @@ use std::prelude::rust_2021::String as String;
 
 
 pub fn main() {
-    let data = fs::read_to_string("config.set");
-    let fsread = data;
     let mut stringset:String;
     let mut stringset = String::new();
     let mut auga:String;
