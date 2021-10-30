@@ -8,26 +8,25 @@ pub fn main() {
     let data = fs::read_to_string("config.set");
     let fsread = data;
     let mut stringset:String;
-	let mut stringset = String::new();
+    let mut stringset = String::new();
     let mut auga:String;
     let mut augb:String;
     let mut setting;
-	let mut stringsetaug:String;
-	let mut stringsetaug = String::new();
+    let mut stringsetaug:String;
+    let mut stringsetaug = String::new();
     setting = "B";
-	let f = BufReader::new(File::open("main.fs").expect("open failed"));
+    let f = BufReader::new(File::open("main.fs").expect("open failed"));
     for line in f.lines() {
         for c in line.expect("lines failed").chars() {
-            // main system
-			stringset.push(c);
+	    stringset.push(c);
             if c != ' ' {
 				
             } else {
                 setting = "A";
                 if c != ';' {
-					if setting != "A" {
-						stringsetaug.push(c);
-					}
+			if setting != "A" {
+				stringsetaug.push(c);
+		        }
                 }
             }
         }
